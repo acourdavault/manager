@@ -6,4 +6,3 @@ if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global);
 }
 
-require('core-js/client/shim');
