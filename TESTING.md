@@ -11,7 +11,7 @@ To run tests:
 **You must have built the JS SDK**
 
 ```
-yarn install:all && yarn workspace linode-js-sdk run build
+yarn install:all && yarn workspace linode-js-sdk build
 ```
 
 Then you can start the tests:
@@ -43,7 +43,7 @@ yarn test linode
 To run a test in debug mode, add a `debugger` breakpoint inside one of the test cases, then run
 
 ```
-yarn workspace linode-manager run test:debug
+yarn workspace linode-manager test:debug
 ```
 
 Test execution will stop at the debugger statement, and you will be able to use Chrome's normal debugger to step through
@@ -183,14 +183,14 @@ E2E tests use [Cypress](https://cypress.io).
 
 #### dependencies
 
-Run `yarn install:all && npx cypress verify`.
+Run `yarn install:all && yarn run cypress verify`.
 
 #### How to run locally without Docker
 
 Run:
 
 - `yarn up` in one terminal
-- In a **new terminal** `npx wait-on http://localhost:3000 && yarn cy:e2e`
+- In a **new terminal** `yarn run wait-on http://localhost:3000 && yarn cy:e2e`
 
 `npx wait-on` will simply wait for the website on 3000 to be ready.
 
@@ -212,9 +212,9 @@ We do not need to take care of Selenium more after this, storybook will take car
 Run:
 
 - `yarn storybook` in one terminal
-- In a **new terminal** `npx wait-on http://localhost:6006 && yarn storybook:e2e`
+- In a **new terminal** `yarn run wait-on http://localhost:6006 && yarn storybook:e2e`
 
-`npx wait-on` will simply wait for the storybook server on 6006 to be ready.
+`yarn run wait-on` will simply wait for the storybook server on 6006 to be ready.
 
 #### How to run with docker
 
