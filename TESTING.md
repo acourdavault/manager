@@ -241,21 +241,16 @@ yarn selenium
 
 ## Accessibility Testing
 
-**broken, needs chromedriver update**
-
-The axe-core accessibility testing script has been integrated into the webdriverIO-based testing framework to enable automated accessibility testing. At present, the script merely navigates to all routes described in `packages/managere2e/constants.js`, loads the page and runs the accessibility tests.
-
-##### Dependencies
-
-- Same as E2E Manager tests
+Cypress-axe provides an easy way to run accessibility tests. See (smoke-axe.spec.js)[packages/manager/cypress/integration/smoke-axe.spec.js].
 
 #### Run Suite
 
 ```
 # Starts the local development environment
 
-yarn install:all && yarn up
-yarn workspace linode-manager run axe
-```
+yarn up
+yarn cy:e2e --spec cypress/integration/smoke-axe.spec.js
 
-The test results will be saved as a JSON file with Critical accessibility violations appearing at the top of the list.
+# or debug, and see the UI
+yarn cy:debug
+```
