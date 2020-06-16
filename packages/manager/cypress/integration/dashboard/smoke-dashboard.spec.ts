@@ -1,4 +1,4 @@
-import { Route } from '../support/api/routes';
+import { Route } from '../../support/api/routes';
 
 describe('dashboard', () => {
   it('checks the dashboard page', () => {

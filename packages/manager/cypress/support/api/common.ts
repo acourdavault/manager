@@ -1,4 +1,4 @@
-import strings from '../cypresshelpers';
+import { randomTitle } from '../cypresshelpers';
 const apiroot = Cypress.env('REACT_APP_API_ROOT') + '/';
 const oauthtoken = Cypress.env('MANAGER_OAUTH');
 export const apiCheckErrors = (resp, failOnError = true) => {
@@ -8,7 +8,7 @@ export const apiCheckErrors = (resp, failOnError = true) => {
   }
   if (failOnError) {
     if (errs) {
-      expect(errs[0].ERRORMESSAGE).not.to.be.exist;
+      expect(errs[0]?.ERRORMESSAGE).not.to.be.exist;
     } else {
       expect(!!errs).to.be.false;
     }
@@ -41,4 +41,4 @@ export const testNamePrefix = 'cy-test-';
 export const isTestEntity = entity =>
   entity.tags.includes(testTag) || entity.label.startsWith(testNamePrefix);
 
-export const makeTestLabel = () => testNamePrefix + strings.randomTitle(10);
+export const makeTestLabel = () => testNamePrefix + randomTitle(10);

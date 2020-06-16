@@ -1,4 +1,4 @@
-import strings from '../cypresshelpers';
+import { randomPass } from '../cypresshelpers';
 import {
   apiCheckErrors,
   testTag,
@@ -16,7 +16,7 @@ const makeLinodeCreateReq = linode => {
   const linodeData = linode
     ? linode
     : {
-        root_pass: strings.randomPass(12),
+        root_pass: randomPass(12),
         label: makeLinodeLabel(),
         type: 'g6-standard-2',
         region: 'us-east',

@@ -1,4 +1,4 @@
-import strings from '../../support/cypresshelpers';
+import { randomPass } from '../../support/cypresshelpers';
 import {
   deleteLinodeByLabel,
   makeLinodeLabel
@@ -11,7 +11,7 @@ describe('create linode', () => {
     cy.get('[data-qa-deploy-linode]');
   });
   it('creates a nanode', () => {
-    const rootpass = strings.randomPass();
+    const rootpass = randomPass();
     const linodeLabel = makeLinodeLabel();
     cy.get('[data-testid="link-text"]').should('have.text', 'linodes');
     cy.get('[data-qa-header="Create"]').should('have.text', 'Create');
