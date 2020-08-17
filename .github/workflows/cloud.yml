@@ -3,7 +3,7 @@
 
 name: Linode Cloud Manager
 
-on: push:
+on: push
 
 jobs:
   build:
