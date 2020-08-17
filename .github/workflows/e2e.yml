@@ -17,7 +17,7 @@ jobs:
     - name: E2E Cypress
       uses: cypress-io/github-action@v1
       with:
-        build: pm install -g yarn && yarn install:all && yarn build:sdk && touch ./packages/manager/.env
+        build: npm install -g yarn && yarn install:all && yarn build:sdk && touch ./packages/manager/.env
         start: yarn workspace linode-manager start
         wait-on: http://localhost:3000
       env:
