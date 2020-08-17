@@ -5,8 +5,6 @@ name: Linode Cloud Manager - E2E
 
 on: push
 
-runs:
-    using: 'docker'
 jobs:
   e2e:
     runs-on: ubuntu-latest
