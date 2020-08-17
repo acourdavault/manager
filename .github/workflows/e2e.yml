@@ -8,7 +8,7 @@ on: push
 runs:
     using: 'docker'
     image: 'cypress/browsers:node12.18.0-chrome83-ff77'
-job:
+jobs:
   e2e:
     steps:
     - uses: actions/checkout@v2
