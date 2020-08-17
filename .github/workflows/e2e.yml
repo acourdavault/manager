@@ -9,14 +9,13 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     steps:
-    - name: Build
-      run: yarn install:all && yarn build:sdk && touch ./packages/manager/.env
     - name: E2E Cypress
       uses: cypress-io/github-action@v2
       with:
+        build: yarn install:all && yarn build:sdk && touch ./packages/manager/.env
         start: yarn workspace linode-manager start
         wait-on: http://localhost:3000
-        project: ./packages/manager
+        command: yarn cy:e2e
       env:
         MANAGER_OAUTH: ${{ secrets.MANAGER_OAUTH }}
         REACT_APP_LAUNCH_DARKLY_ID: ${{ secrets.REACT_APP_LAUNCH_DARKLY_ID }}
