@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: yarn install:all && yarn run cypress verify && yarn build:sdk && touch .env
+      run: yarn install:all && yarn run cypress verify && yarn build:sdk && touch ./packages/manager/.env
     - name: E2E test
       run: sh ./run_cypress_docker.sh
       env:
