@@ -30,7 +30,7 @@ jobs:
       image: 'cypress/browsers:node12.18.0-chrome83-ff77'
     steps:
     - uses: actions/checkout@v2
-    - name: Prepare
-      - run: yarn install:all && yarn run cypress verify && yarn build:sdk
+    - name: Build
+      run: yarn install:all && yarn run cypress verify && yarn build:sdk
     - name: E2E test
-      - run: sh ./run_cypress_docker.sh 
+      run: sh ./run_cypress_docker.sh 
