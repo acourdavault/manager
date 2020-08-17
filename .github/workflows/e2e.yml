@@ -14,8 +14,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build
       run: yarn install:all && yarn run cypress verify && yarn build:sdk && touch ./packages/manager/.env
-    - name: E2E test
-      run: sh ./run_cypress_docker.sh
-      env:
-        MANAGER_OAUTH: ${{ secrets.MANAGER_OAUTH }}
-        REACT_APP_LAUNCH_DARKLY_ID: ${{ secrets.REACT_APP_LAUNCH_DARKLY_ID }}
+    - name: E2E Cypress
+      uses: cypress-io/github-action@v1
+      with:
+        build: yarn install:all && yarn build:sdk && touch ./packages/manager/.env
+        start: yarn workspace linode-manager start
+        wait-on: http://localhost:3000
+        env:
+          MANAGER_OAUTH: ${{ secrets.MANAGER_OAUTH }}
+          REACT_APP_LAUNCH_DARKLY_ID: ${{ secrets.REACT_APP_LAUNCH_DARKLY_ID }}
