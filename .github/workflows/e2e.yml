@@ -20,6 +20,6 @@ jobs:
         build: yarn install:all && yarn build:sdk && touch ./packages/manager/.env
         start: yarn workspace linode-manager start
         wait-on: http://localhost:3000
-        env:
-          MANAGER_OAUTH: ${{ secrets.MANAGER_OAUTH }}
-          REACT_APP_LAUNCH_DARKLY_ID: ${{ secrets.REACT_APP_LAUNCH_DARKLY_ID }}
+      env:
+        MANAGER_OAUTH: ${{ secrets.MANAGER_OAUTH }}
+        REACT_APP_LAUNCH_DARKLY_ID: ${{ secrets.REACT_APP_LAUNCH_DARKLY_ID }}
