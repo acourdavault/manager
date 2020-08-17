@@ -8,10 +8,11 @@ on: push
 runs:
     using: 'docker'
     image: 'cypress/browsers:node12.18.0-chrome83-ff77'
-job: E2E
-  steps:
-  - uses: actions/checkout@v2
-  - name: Build
-    run: yarn install:all && yarn run cypress verify && yarn build:sdk
-  - name: E2E test
-    run: sh ./run_cypress_docker.sh 
+job:
+  e2e:
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: yarn install:all && yarn run cypress verify && yarn build:sdk
+    - name: E2E test
+      run: sh ./run_cypress_docker.sh 
