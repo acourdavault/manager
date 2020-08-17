@@ -8,15 +8,12 @@ on: push
 jobs:
   e2e:
     runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node12.18.0-chrome83-ff77
     steps:
-    - name: Install
-      run: yarn install:all && yarn build:sdk
+    - name: Build
+      run: yarn install:all && yarn build:sdk && touch ./packages/manager/.env
     - name: E2E Cypress
       uses: cypress-io/github-action@v2
       with:
-        build: yarn build:sdk && touch ./packages/manager/.env
         start: yarn workspace linode-manager start
         wait-on: http://localhost:3000
         project: ./packages/manager
