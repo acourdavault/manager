@@ -13,8 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Get Dependencies
-      runs: yarn install:all
+    - run: yarn install:all
     - uses: cypress-io/github-action@v2
       with:
         browser: chrome
