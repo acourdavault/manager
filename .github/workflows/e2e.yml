@@ -19,3 +19,5 @@ jobs:
       env:
         MANAGER_OAUTH: ${{ secrets.MANAGER_OAUTH }}
         REACT_APP_LAUNCH_DARKLY_ID: ${{ secrets.REACT_APP_LAUNCH_DARKLY_ID }}
+        REACT_APP_LOGIN_ROOT: https://login.linode.com
+        REACT_APP_API_ROOT: https://api.linode.com/v4
