@@ -13,12 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: yarn install:all && yarn run cypress verify && yarn build:sdk && touch ./packages/manager/.env
-    - name: Setup kernel for react native, increase watchers
-      run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-    - name: E2E Cypress
-      run: sh ./run_cypress_docker.sh
+    - uses: cypress-io/github-action@v2
+      with:
+        browser: chrome
+        headless: true
+        build: yarn install:all && yarn build:sdk
+        start: yarn workspace linode-manager start
+        wait-on: 'http://localhost:3000/'
+        command: yarn cy:e2e --spec ./cypress/integration/smoke-dashboard.spec.ts
       env:
         MANAGER_OAUTH: ${{ secrets.MANAGER_OAUTH }}
         REACT_APP_LAUNCH_DARKLY_ID: ${{ secrets.REACT_APP_LAUNCH_DARKLY_ID }}
