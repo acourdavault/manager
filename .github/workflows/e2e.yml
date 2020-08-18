@@ -13,11 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Get Dependencies
+      runs: yarn install:all
     - uses: cypress-io/github-action@v2
       with:
         browser: chrome
         headless: true
-        build: yarn install:all && yarn build:sdk
+        build: yarn build:sdk
         start: yarn workspace linode-manager start
         wait-on: 'http://localhost:3000/'
         command: yarn cy:e2e --spec ./cypress/integration/smoke-dashboard.spec.ts
