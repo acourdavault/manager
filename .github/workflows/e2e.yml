@@ -16,7 +16,7 @@ jobs:
     - name: Build
       run: yarn install:all && yarn run cypress verify && yarn build:sdk && touch ./packages/manager/.env
     - name: E2E Cypress
-      run: yarn install:all && yarn build:sdk && touch packages/manager/.env && sh ./run_cypress_docker.sh
+      run: sh ./run_cypress_docker.sh
       env:
         MANAGER_OAUTH: ${{ secrets.MANAGER_OAUTH }}
         REACT_APP_LAUNCH_DARKLY_ID: ${{ secrets.REACT_APP_LAUNCH_DARKLY_ID }}
