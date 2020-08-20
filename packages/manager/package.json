@@ -45,7 +45,7 @@
     "ipaddr.js": "^1.9.1",
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^3.2.4",
-    "launchdarkly-react-client-sdk": "2.11.0",
+    "launchdarkly-react-client-sdk": "2.20.0",
     "logic-query-parser": "^0.0.5",
     "luxon": "^1.24.1",
     "md5": "^2.2.1",
