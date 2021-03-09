@@ -21,6 +21,39 @@ interface Props {
   items?: InvoiceItem[];
 }
 
+// Building the CSV from the Data two-dimensional array
+// Each column is separated by ";" and new line "\n" for next row
+const renderCsv = (items: any[])=>{
+  let csvContent = 'name, price\n';
+  items.forEach(i=>{
+    csvContent +=`${i.label}, ${i.unit_price !== 'None' && renderUnitPrice(i.unit_price)};\n`
+  })
+  return csvContent
+}
+// The download function takes a CSV string, the filename and mimeType as parameters
+// Scroll/look down at the bottom of this snippet to see how download is called
+const download = function(content: string, fileName: string, mimeType: string) {
+  var a = document.createElement('a');
+  mimeType = mimeType || 'application/octet-stream';
+
+  if (navigator.msSaveBlob) { // IE10
+    navigator.msSaveBlob(new Blob([content], {
+      type: mimeType
+    }), fileName);
+  } else if (URL && 'download' in a) { //html5 A[download]
+    a.href = URL.createObjectURL(new Blob([content], {
+      type: mimeType
+    }));
+    a.setAttribute('download', fileName);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } else {
+    location.href = 'data:application/octet-stream,' + encodeURIComponent(content); // only this mime type is supported
+  }
+}
+
+
 const InvoiceTable: React.FC<Props> = (props) => {
   const { loading, errors, items } = props;
 
@@ -159,7 +192,11 @@ const MaybeRenderContent: React.FC<{
   }
 
   if (items && items.length > 0) {
-    return <RenderData items={items} />;
+    const csvContent = renderCsv(items);
+    return <div>
+      <button onClick={(e: React.MouseEvent<HTMLElement>)=>download(csvContent, 'dowload.csv', 'text/csv;encoding:utf-8')}>CSV
+        </button><RenderData items={items} />
+      </div>;
   }
 
   return <RenderEmpty />;
